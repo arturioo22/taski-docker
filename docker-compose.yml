@@ -1,0 +1,52 @@
+# Файл docker-compose.yml
+version: '3.8'  # Добавьте версию для совместимости
+
+volumes:
+  pg_data:
+
+  static:
+
+# Добавьте эту секцию сетей
+networks:
+  app-network:
+    driver: bridge
+
+services:
+  db:
+    image: postgres:13.10
+    env_file: .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:  # Подключите к сети
+      - app-network
+
+  backend:
+    build: ./backend/
+    env_file: .env
+    depends_on:
+      - db
+    networks:  # Подключите к сети
+      - app-network
+    volumes:
+      - static:/backend_static
+
+  frontend:
+    env_file: .env
+    build: ./frontend/
+    command: cp -r /app/build/. /frontend_static/
+    networks:  # Подключите к сети
+      - app-network
+    volumes:
+      - static:/frontend_static
+
+  gateway:
+    build: ./gateway/
+    volumes:
+      - static:/staticfiles
+    ports:
+      - 8000:80
+    depends_on:  # Добавьте зависимости
+      - backend
+      - frontend
+    networks:  # Подключите к сети
+      - app-network
