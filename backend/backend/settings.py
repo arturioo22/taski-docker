@@ -1,21 +1,13 @@
-from pathlib import Path
-<<<<<<< HEAD
 import os
-=======
->>>>>>> 99c722f8924e356e5af21d50502c222ebf34dc1e
+from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 SECRET_KEY = 'django-insecure-j_89af+30&&4qm*8z9_(^zz8p4-ho8z_m6ylm0s$h!-p@on1_^'
 
 DEBUG = True
 
-<<<<<<< HEAD
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '').split(',')
-=======
-ALLOWED_HOSTS = []
->>>>>>> 99c722f8924e356e5af21d50502c222ebf34dc1e
 
 
 # Application definition
@@ -69,7 +61,6 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-<<<<<<< HEAD
         # Меняем настройку Django: теперь для работы будет использоваться
         # бэкенд postgresql
         'ENGINE': 'django.db.backends.postgresql',
@@ -81,14 +72,6 @@ DATABASES = {
     }
 }
 
-=======
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
->>>>>>> 99c722f8924e356e5af21d50502c222ebf34dc1e
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -127,13 +110,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-<<<<<<< HEAD
 STATIC_ROOT = BASE_DIR / 'collected_static'
-
-=======
->>>>>>> 99c722f8924e356e5af21d50502c222ebf34dc1e
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
